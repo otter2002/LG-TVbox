@@ -1,0 +1,6 @@
+{
+  "name": "com.lgwebos.tvbox.service",
+  "version": "1.0.0",
+  "description": "TVBox network proxy service",
+  "main": "index.js"
+}

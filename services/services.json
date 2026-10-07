@@ -1,0 +1,10 @@
+{
+  "id": "com.lgwebos.tvbox.service",
+  "description": "TVBox network proxy service",
+  "services": [
+    {
+      "name": "com.lgwebos.tvbox.service",
+      "description": "Fetch remote resources without CORS restrictions"
+    }
+  ]
+}

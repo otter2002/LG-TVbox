@@ -1,0 +1,34 @@
+{
+  "name": "lg-tvbox",
+  "version": "1.0.0",
+  "private": true,
+  "description": "TVBox-style video client for LG webOS TV with a built-in drpy2 spider engine",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/otter2002/LG-TVbox.git"
+  },
+  "scripts": {
+    "postinstall": "node scripts/copy-hls.js",
+    "build:service": "esbuild service-src/engine.js service-src/spider-worker.js service-src/fetch-worker.js --bundle --platform=node --target=node20 --outdir=services --loader:.txt=text --log-level=warning",
+    "dev": "npm run build:service && node dev-server.js",
+    "test": "node scripts/test-parse.js && npm run build:service && node scripts/test-htmlparser.js",
+    "smoke": "npm run build:service && node scripts/spider-smoke.js",
+    "package": "npm run build:service && ares-package --no-minify app services -o dist",
+    "install-tv": "ares-install --device tv dist/com.lgwebos.tvbox_1.0.0_all.ipk",
+    "launch": "ares-launch --device tv com.lgwebos.tvbox",
+    "deploy": "npm run package && npm run install-tv && npm run launch",
+    "inspect": "ares-inspect --device tv --app com.lgwebos.tvbox --open"
+  },
+  "devDependencies": {
+    "@webos-tools/cli": "^3.1.0",
+    "cheerio": "1.0.0-rc.12",
+    "crypto-js": "^4.2.0",
+    "esbuild": "^0.24.2",
+    "hls.js": "^1.5.0",
+    "iconv-lite": "^0.6.3",
+    "json5": "^2.2.3",
+    "jsonpath-plus": "^10.4.0",
+    "pako": "^2.2.0"
+  }
+}

@@ -1,0 +1,6 @@
+node_modules/
+dist/
+app/lib/
+services/engine.js
+services/spider-worker.js
+services/fetch-worker.js
